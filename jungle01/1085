@@ -1,0 +1,10 @@
+X, Y, W, H = map(int, input().split())
+
+A = W - X
+B = X - 0
+C = H - Y
+D = Y - 0
+
+values = [A,B,C,D]
+
+print(min(values))
