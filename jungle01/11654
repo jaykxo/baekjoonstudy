@@ -1,0 +1,2 @@
+none = input()
+print(ord(none))
