@@ -1,0 +1,14 @@
+A = int(input())
+
+for _ in range(A):
+  B = list(input())
+  score = 0
+  result = 0
+  for i in range(len(B)):
+    if B[i] == "O":
+       result += 1
+       score += result
+    if B[i] == "X":
+       result = 0
+    
+  print(score)
