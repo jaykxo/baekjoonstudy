@@ -1,0 +1,15 @@
+A,B = input().split()
+A = list(A)
+B = list(B)
+
+A = A[::-1]
+B = B[::-1]
+
+A = ''.join(A)
+B = ''.join(B)
+
+A = int(A)
+B = int(B)
+
+if A > B: print(A)
+else: print(B)
