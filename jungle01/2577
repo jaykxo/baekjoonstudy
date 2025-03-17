@@ -1,0 +1,17 @@
+A = int(input())
+B = int(input())
+C = int(input())
+
+sum = A * B * C
+
+Y = list(str(sum))
+print(Y.count('0'))
+print(Y.count('1'))
+print(Y.count('2'))
+print(Y.count('3'))
+print(Y.count('4'))
+print(Y.count('5'))
+print(Y.count('6'))
+print(Y.count('7'))
+print(Y.count('8'))
+print(Y.count('9'))
