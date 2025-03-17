@@ -1,0 +1,14 @@
+C = int(input())
+
+for _ in range(C):
+  A = list(map(int, input().split()))
+  N = A[0]
+  scores = A[1:]
+  avg = sum(scores) / N
+  count = 0
+  
+  for score in scores:
+    if score > avg:
+     count += 1
+
+  print(f"{(count / N) * 100:.3f}%")
