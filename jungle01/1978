@@ -1,0 +1,15 @@
+N = int(input())
+A = list(map(int, input().split()))
+count = 0
+
+for num in A:
+  if num < 2:
+        continue  # 1은 소수가 아니므로 제외
+  for i in range(2,num):
+   
+    if num % i == 0:
+       break
+  else:
+    count += 1
+
+print(count)
