@@ -1,0 +1,7 @@
+N = int(input())
+
+W = [(input()) for _ in range(N)]
+W = sorted(set(W), key=lambda x: (len(x), x))
+
+for word in W:
+  print(word)
