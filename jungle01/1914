@@ -1,0 +1,23 @@
+move_count = 0  # Global counter for moves (optional; here to mimic your original style)
+
+def move(n: int, x: int, y: int) -> None:
+    global move_count
+    if n == 1:
+        print(x, y)
+        move_count += 1  # Count this move
+        return
+    move(n - 1, x, 6 - x - y)  # Move n-1 disks from peg x to the auxiliary peg (6-x-y)
+    print(x, y)              # Move the largest disk from peg x to peg y
+    move_count += 1          # Count that move
+    move(n - 1, 6 - x - y, y)  # Move n-1 disks from the auxiliary peg to peg y
+
+# Read the number of disks from standard input.
+n = int(input())
+
+# Calculate and print the total number of moves.
+total_moves = 2 ** n - 1
+print(total_moves)
+
+# Print the moves only if n is less than or equal to 20.
+if n <= 20:
+    move(n, 1, 3)
