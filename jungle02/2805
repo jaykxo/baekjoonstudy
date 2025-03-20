@@ -1,0 +1,21 @@
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+
+def bin_search():
+    pl = 0
+    pr = max(A)  # 탐색 범위 설정
+    result = 0
+
+    while pl <= pr:
+        pc = (pl + pr) // 2  # 중간값 찾기
+
+        length = sum([max(0, tree - pc) for tree in A])
+
+        if  length >= M: 
+            result = pc  
+            pl = pc + 1  # 오른쪽 탐색
+        else:
+            pr = pc - 1  # 왼쪽 탐색
+    return result
+    
+print(bin_search())
