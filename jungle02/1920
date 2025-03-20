@@ -1,0 +1,28 @@
+from typing import Any, Sequence
+
+N = int(input())
+A = list(map(int, input().split()))
+A.sort()
+M = int(input())
+K = list(map(int, input().split()))
+
+def bin_search(A: Sequence, key: Any):
+    pl = 0
+    pr = len(A) - 1  # 탐색 범위 설정
+
+    while pl <= pr:
+        pc = (pl + pr) // 2  # 중간값 찾기 (3번째 값)
+
+        if A[pc] == key:  
+         print("1")  
+         return pc       # 찾으면 인덱스 반환
+        
+        elif A[pc] < key:
+            pl = pc + 1  # 오른쪽 탐색
+        else:
+            pr = pc - 1  # 왼쪽 탐색
+
+    print("0")  # 검색 실패
+
+for key in K:
+    bin_search(A, key)
