@@ -1,0 +1,31 @@
+import sys
+
+class Stack:
+   def __init__(self):
+      self.stk = []
+
+   def push(self, value):
+      self.stk.append(value)
+
+   def pop(self):
+      if self.is_empty():
+         return -1
+      return self.stk.pop()
+   
+   def is_empty(self):
+      return len(self.stk) == 0
+
+N = int(sys.stdin.readline().strip())
+stk = Stack()
+
+for _ in range(N):
+   command = int(sys.stdin.readline().strip())
+
+
+   if command != 0:
+      stk.push(command)
+
+   elif command == 0:
+      stk.pop()
+
+print(sum(stk.stk))
