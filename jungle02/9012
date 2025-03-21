@@ -1,0 +1,41 @@
+import sys
+
+class Stack:
+   def __init__(self):
+      self.stk = []
+
+   def push(self, value):
+      self.stk.append(value)
+
+   def pop(self):
+      if self.is_empty():
+         return -1
+      return self.stk.pop()
+   
+   def is_empty(self):
+      return len(self.stk) == 0
+   
+N = int(sys.stdin.readline().strip())
+
+for _ in range(N):
+   stk = Stack()
+   valid = True
+   parentheses = sys.stdin.readline().strip()
+   P = list(parentheses)
+   for i in range(len(P)):
+
+    if P[i] == "(":
+      stk.push("정글정글")
+
+    elif P[i] == ")":
+      if stk.is_empty():
+         valid = False
+         break
+      else:
+         stk.pop()
+
+   if valid and stk.is_empty():
+     print("YES")
+
+   else:
+     print("NO")
