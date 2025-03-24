@@ -1,0 +1,18 @@
+import heapq
+
+N = int(input())
+hp = []
+
+for _ in range(N):
+    cards = int(input())
+    heapq.heappush(hp, cards)
+
+total = 0
+while len(hp) > 1:
+  c1 = heapq.heappop(hp)
+  c2 = heapq.heappop(hp)
+  new = int(c1) + int(c2)
+  total += new
+  heapq.heappush(hp, new)
+
+print(total)
