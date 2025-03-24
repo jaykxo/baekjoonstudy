@@ -1,0 +1,9 @@
+from collections import deque
+
+N = int(input())
+dq = deque(range(1,N+1))
+while len(dq) > 1:
+    dq.popleft()
+    dq.append(dq.popleft())   # 인덱스 옮기기 코드 추가
+
+print(dq[0])
