@@ -1,0 +1,24 @@
+import sys
+import heapq
+
+N = int(sys.stdin.readline().strip())
+max_hp = []
+min_hp = []
+
+for X in range(N):
+    X = int(sys.stdin.readline().strip())
+
+# 중간값을 유지하기 위해 최대 힙 또는 최소 힙에 삽입
+    if not max_hp or X <= -max_hp[0]:
+        heapq.heappush(max_hp, -X)
+    else:
+        heapq.heappush(min_hp, X)
+
+# 크기 조정 (최대 힙이 최소 힙보다 1개 더 많거나 같도록 유지)
+    if len(max_hp) > len(min_hp) + 1:
+        heapq.heappush(min_hp, -heapq.heappop(max_hp))
+                       
+    if len(min_hp) > len(max_hp):
+        heapq.heappush(max_hp, -heapq.heappop(min_hp))
+    
+    print(-max_hp[0])
