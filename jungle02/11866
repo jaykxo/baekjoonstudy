@@ -1,0 +1,17 @@
+from collections import deque
+
+N, K = map(int, input().split())
+order = []
+
+dq = deque(range(1,N+1))
+
+while len(dq) > 1:
+    dq.rotate(-(K-1))
+    order.append(dq.popleft())
+if dq:
+    order.append(dq.popleft())
+
+
+print("<", end="")
+print(*order, sep=", ", end="")
+print(">")
