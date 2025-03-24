@@ -1,0 +1,24 @@
+import sys
+import heapq
+
+N = int(sys.stdin.readline().strip())
+commute = []
+
+for _ in range(N):
+    h, o = map(int, sys.stdin.readline().split())
+    commute.append((min(h,o), max(h,o)))   # 정렬된 형태로 저장
+
+d = int(sys.stdin.readline().strip())
+commute.sort(key=lambda x: x[1])
+
+heap = []
+max_people = 0
+for x in commute:
+    heapq.heappush(heap, x[0])
+
+    while heap and heap[0] < x[1] - d:
+        heapq.heappop(heap)
+
+    max_people = max(max_people, len(heap))
+
+print(max_people)
