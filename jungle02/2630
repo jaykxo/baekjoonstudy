@@ -1,0 +1,28 @@
+N = int(input())
+paper = [list(map(int, input().split())) for _ in range(N)]
+color_count = [0, 0]
+
+def check_color(x, y, size):
+    color = paper[x][y]
+    for i in range(x, x + size):
+        for j in range(y, y + size):
+            if paper[i][j] != color:
+                return False
+    return True
+
+def divide(x, y, size):
+    if check_color(x, y, size):
+        color_count[paper[x][y]] += 1
+        return
+    
+    new_size = size // 2
+
+    divide(x, y, new_size)
+    divide(x, y + new_size, new_size)
+    divide(x + new_size, y, new_size)
+    divide(x + new_size, y + new_size, new_size)
+
+divide(0, 0, N)
+
+print(color_count[0])
+print(color_count[1])
