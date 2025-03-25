@@ -1,0 +1,29 @@
+import sys
+
+N, B = map(int, sys.stdin.readline().split())
+A = [list(map(int, sys.stdin.readline().split())) for _ in range (N)]
+result = []
+
+def matrix_mult(A, B):
+    N = len(A)
+    result = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            for k in range(N):
+                result[i][j] = (result[i][j] + A[i][k] * B[k][j]) % 1000
+    return result
+
+def matrix_pow(A, B):
+    N = len(A)
+    if B == 0:
+        return [[1 if i == j else 0 for j in range(N)] for i in range(N)]
+    
+    half = matrix_pow(A, B // 2)
+    result = matrix_mult(half, half)
+    if B % 2 == 1:
+        result = matrix_mult(result, A)
+    return result
+
+result = matrix_pow(A, B)
+for row in result:
+    print(' '.join(map(str, row)))
