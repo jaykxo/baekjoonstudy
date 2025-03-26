@@ -1,0 +1,25 @@
+import sys
+input = sys.stdin.readline
+
+def largest_rectangle(h):
+    stack = []
+    max_area = 0  # 지금까지 계산된 가장 큰 넓이 저장 변수
+    h.append(0)  # 끝 처리용, 마지막에 스택에 남은 막대들도 전부 pop
+
+    for i in range(len(h)):
+        while stack and h[stack[-1]] > h[i]:
+            height = h[stack.pop()]
+            width = i if not stack else i - stack[-1] - 1
+            max_area = max(max_area, height * width)
+        stack.append(i)
+
+    return max_area
+
+while True:
+    line = input()
+    if line.strip() == "0":
+        break
+    data = list(map(int, line.strip().split()))
+    N = data[0]
+    heights = data[1:]
+    print(largest_rectangle(heights))
