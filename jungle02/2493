@@ -1,0 +1,13 @@
+N = int(input())
+H = list(map(int, input().split()))
+answer = [0] * N
+stack = []
+
+for i in range(N):
+    while stack and stack[-1][0] < H[i]:
+        stack.pop()
+    if stack:
+        answer[i] = stack[-1][1] + 1
+    stack.append((H[i], i))
+
+print(' '.join(map(str, answer)))
