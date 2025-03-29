@@ -1,0 +1,51 @@
+# 트리 노드 클래스 기본 구조
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+# 전위 순회 (루트 -> 왼쪽 -> 오른쪽)
+def preorder(node):
+    if node is None:
+        return
+    print(node.data, end='')
+    preorder(node.left)
+    preorder(node.right)
+
+# 중위 순회 (왼쪽 -> 루트 -> 오른쪽)
+def inorder(node):
+    if node is None:
+        return
+    inorder(node.left)
+    print(node.data, end='')
+    inorder(node.right)
+
+# 후위 순회 (왼쪽 -> 오른쪽 -> 루트)
+def postorder(node):
+    if node is None:
+        return
+    postorder(node.left)
+    postorder(node.right)
+    print(node.data, end='')
+
+# 입력 받아서 트리 구성
+N = int(input())
+tree = {}           # 딕셔너리 형식으로 저장
+
+for _ in range(N):
+    parent, left, right = input().split()
+    if parent not in tree:
+        tree[parent] = Node(parent)
+    if left != '.':
+        tree[left] = Node(left)
+        tree[parent].left = tree[left]
+    if right != '.':
+        tree[right] = Node(right)
+        tree[parent].right = tree[right]
+
+preorder(tree["A"])
+print()
+inorder(tree['A'])
+print()
+postorder(tree['A'])
