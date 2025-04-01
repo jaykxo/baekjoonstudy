@@ -1,0 +1,29 @@
+def find(x):            # 대표 부모노드 찾아주는 함수
+    while parent[x] != x: 
+        parent[x] = parent[parent[x]]      # 경로 압축??
+        x = parent[x]
+    return x
+
+def union(x, y):       # x와 y가 속한 그룹의 대표 먼저 찾기
+    root_x = find(x)
+    root_y = find(y)
+    if root_x != root_y:     # 두 그룹이 서로 다르면
+        parent[root_y] = root_x       # 하나로 합쳐 root_y를 root_x 밑으로 붙이기
+        return True
+    return False             # 두 노드가 이미 같은 그룹이면, 이미 연결돼있으니 버리기
+
+N, M = map(int, input().split())
+edges = []
+for _ in range(M):
+    u, v, w = map(int, input().split())
+    edges.append((w, u, v))         # 가중치 기준으로 정렬하기 위해 순서 바꿈
+
+edges.sort()          # 간선들을 짧은 거리부터 차례대로 정렬
+parent = [i for i in range(N + 1)]      # 각 노드의 부모를 자기자신으로 초기화
+                                        # (처음에는 자기자신이 대표)
+total_weight = 0  # 전체 가중치 저장 변수
+for w, u, v in edges:
+    if union(u, v):     #u와 v가 아직 연결 안 됐으면 union이 True
+        total_weight += w       # 가중치 비용 더하기
+
+print(total_weight)
