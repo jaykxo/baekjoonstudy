@@ -1,0 +1,12 @@
+N, K = map(int, input().split())
+coins = [int(input()) for _ in range(N)]
+coins.sort(reverse=True)
+count = 0
+
+for coin in coins:
+    if K == 0:
+        break
+    count += K // coin
+    K %= coin            # 나머지를 구해서 자기 자신에 다시 저장 (조금 생소,,)
+
+print(count)
