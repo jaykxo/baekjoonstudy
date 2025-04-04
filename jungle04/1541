@@ -1,0 +1,14 @@
+form = input()
+modi = form.split('-')
+result = 0
+
+for i, part in enumerate(modi):
+    numbers = map(int, part.split('+'))
+    part_sum = sum(numbers)
+
+    if i == 0:
+        result += part_sum
+    else:
+        result -= part_sum
+
+print(result)
